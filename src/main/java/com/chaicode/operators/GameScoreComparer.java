@@ -27,7 +27,19 @@ public final class GameScoreComparer {
     private GameScoreComparer() {}
 
     public static String compareScores(int p1Base, int p1Bonus, int p2Base, int p2Bonus) {
-        // Your code here
-        return "";
+        if (p1Base < 0 || p2Base < 0 || p1Bonus < 0 || p2Bonus < 0 || p1Bonus > 100 || p2Bonus > 100) {
+            return "Invalid";
+        }
+
+        int p1Score = p1Base + (p1Base * p1Bonus / 100);
+        int p2Score = p2Base + (p2Base * p2Bonus / 100);
+
+        if (p1Score > p2Score) {
+            return "Player 1 wins";
+        } else if (p2Score > p1Score) {
+            return "Player 2 wins";
+        } else {
+            return "Tie";
+        }
     }
 }

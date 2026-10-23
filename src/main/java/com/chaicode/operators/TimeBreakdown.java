@@ -24,7 +24,14 @@ public final class TimeBreakdown {
     private TimeBreakdown() {}
 
     public static TimeParts toTimeParts(int totalSeconds) {
-        // Your code here
-        return null;
+        if (totalSeconds < 0) {
+            return null;
+        }
+
+        int hours = totalSeconds / 3600;
+        int minutes = (totalSeconds % 3600) / 60;
+        int seconds = totalSeconds % 60;
+
+        return new TimeParts(hours, minutes, seconds);
     }
 }

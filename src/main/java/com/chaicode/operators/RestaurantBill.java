@@ -21,7 +21,14 @@ public final class RestaurantBill {
     private RestaurantBill() {}
 
     public static double calculateTotal(double subtotal) {
-        // Your code here
-        return 0.0;
+        if (subtotal < 0) {
+            return -1.0;
+        }
+
+        double tax = subtotal * 0.08;
+        double tip = (subtotal + tax) * 0.15;
+        double total = subtotal + tax + tip;
+
+        return Math.round(total * 100) / 100.0;
     }
 }

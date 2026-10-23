@@ -22,7 +22,11 @@ public final class SaleDiscount {
     private SaleDiscount() {}
 
     public static double applyDiscount(double originalPrice, int discountPercent) {
-        // Your code here
-        return 0.0;
+        if (originalPrice < 0 || discountPercent <= 0 || discountPercent >= 100) {
+            return -1.0;
+        }
+
+        double salePrice = originalPrice * (1 - discountPercent / 100.0);
+        return Math.round(salePrice * 100) / 100.0;
     }
 }
