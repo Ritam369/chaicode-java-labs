@@ -28,7 +28,8 @@ public final class EmployeeBadge {
     private EmployeeBadge() {}
 
     public static String formatBadge(EmployeeProfile profile) {
-        // Your code here
-        return "";
+        String id = String.format("ID-%05d", profile.employeeId());
+        String role = profile.isManager() ? "MANAGER" : "STAFF";
+        return String.format("[%s] %s | %s | %s", id, profile.name(), profile.department(), role);
     }
 }

@@ -29,7 +29,8 @@ public final class ProductListing {
     private ProductListing() {}
 
     public static String formatListing(ProductItem item) {
-        // Your code here
-        return "";
+        String name = item.isOrganic() ? "Organic " + item.name() : "Regular " + item.name();
+        double lineTotal = item.quantity() * item.unitPrice();
+        return String.format("%s x%d = $%.2f", name, item.quantity(), lineTotal);
     }
 }
