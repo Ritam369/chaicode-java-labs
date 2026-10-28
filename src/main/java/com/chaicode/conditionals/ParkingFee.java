@@ -47,7 +47,42 @@ public final class ParkingFee {
     private ParkingFee() {}
 
     public static int calculateParkingFee(double hours, String vehicleType) {
-        // Your code here
-        return 0;
+        if (hours <= 0) {
+            return -1;
+        }
+        if (!vehicleType.equals("car") && !vehicleType.equals("motorcycle") && !vehicleType.equals("bus")) {
+            return -1;
+        }
+        switch (vehicleType) {
+            case "car":
+                {
+                    int parkingFee = 5;
+                    int additionalHours = (int) Math.ceil(hours) - 1;
+                    if (additionalHours > 0) {
+                        parkingFee += additionalHours * 3;
+                    }
+                    return Math.min(parkingFee, 30);
+                }
+            case "motorcycle":
+                {
+                    int parkingFee = 3;
+                    int additionalHours = (int) Math.ceil(hours) - 1;
+                    if (additionalHours > 0) {
+                        parkingFee += additionalHours * 2;
+                    }
+                    return Math.min(parkingFee, 18);
+                }
+            case "bus":
+                {
+                    int parkingFee = 10;
+                    int additionalHours = (int) Math.ceil(hours) - 1;
+                    if (additionalHours > 0) {
+                        parkingFee += additionalHours * 7;
+                    }
+                    return Math.min(parkingFee, 60);
+                }
+            default:
+                return -1;
+        }
     }
 }

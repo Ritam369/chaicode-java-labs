@@ -37,7 +37,45 @@ public final class PasswordStrength {
     private PasswordStrength() {}
 
     public static String checkPasswordStrength(String password) {
-        // Your code here
-        return "";
+        if (password == null || password.isEmpty()) {
+            return "weak";
+        }
+
+        int criteriaMet = 0;
+
+        if (password.length() >= 8) {
+            criteriaMet++;
+        }
+
+        if (password.matches(".*[A-Z].*")) {
+            criteriaMet++;
+        }
+
+        if (password.matches(".*[a-z].*")) {
+            criteriaMet++;
+        }
+
+        if (password.matches(".*[0-9].*")) {
+            criteriaMet++;
+        }
+
+        if (password.matches(".*[!@#$%^&*()_+\\-=\\[\\]{}|;:,.<>?].*")) {
+            criteriaMet++;
+        }
+
+        switch (criteriaMet) {
+            case 0:
+            case 1:
+                return "weak";
+            case 2:
+            case 3:
+                return "medium";
+            case 4:
+                return "strong";
+            case 5:
+                return "very strong";
+            default:
+                return "weak";
+        }
     }
 }

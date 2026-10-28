@@ -44,7 +44,15 @@ public final class LibraryCard {
     private LibraryCard() {}
 
     public static BorrowResult canBorrowBook(int memberAge, boolean hasValidCard, int overdueBooks) {
-        // Your code here
-        return null;
+        if (memberAge < 6) {
+            return new BorrowResult(false, "Too young - must be at least 6 years old");
+        }
+        if (!hasValidCard) {
+            return new BorrowResult(false, "Invalid library card - please renew at the front desk");
+        }
+        if (overdueBooks > 0) {
+            return new BorrowResult(false, "Please return your " + overdueBooks + " overdue book(s) first");
+        }
+        return new BorrowResult(true, "You may borrow up to 3 books");
     }
 }

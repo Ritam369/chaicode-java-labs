@@ -35,7 +35,25 @@ public final class GradeCalculator {
     private GradeCalculator() {}
 
     public static String calculateGrade(int score, boolean hasExtraCredit) {
-        // Your code here
-        return "";
+        if (score < 0 || score > 100) {
+            return "INVALID";
+        }
+        if (hasExtraCredit) {
+            score += 5;
+            if (score > 100) {
+                score = 100;
+            }
+        }
+        if (score >= 90) {
+            return "A";
+        } else if (score >= 80) {
+            return "B";
+        } else if (score >= 70) {
+            return "C";
+        } else if (score >= 60) {
+            return "D";
+        } else {
+            return "F";
+        }
     }
 }
